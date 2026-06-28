@@ -4,11 +4,6 @@ import 'package:movie_app/models/movie_model.dart';
 import 'package:movie_app/utils/movie_parser.dart';
 
 class MovieProvider extends ChangeNotifier {
-  //   final List<String> _movieList = [
-  //     'The Godfather',
-  //     'Batman Begins',
-  //     'The dark knight',
-  //   ];
   List<Movie> _movieList = [];
 
   List<Movie> get movieList => _movieList;
