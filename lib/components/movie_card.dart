@@ -3,9 +3,10 @@ import 'package:movie_app/models/movie_model.dart';
 import 'package:movie_app/pages/movie_details.dart';
 
 class MovieCard extends StatelessWidget {
-  const MovieCard({super.key, required this.movie});
+  const MovieCard({super.key, required this.movie, this.isDetails = false});
 
   final Movie movie;
+  final bool isDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class MovieCard extends StatelessWidget {
       child: ExpansionTile(
         title: Text(movie.title),
         subtitle: Text('Director: ${movie.director}'),
-        leading: CircleAvatar(child: Text(movie.title[0])),
+        leading: CircleAvatar(backgroundImage: NetworkImage(movie.images[0])),
         children: [
           Container(
             alignment: Alignment.center,
@@ -41,17 +42,20 @@ class MovieCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MovieDetails(movie: movie),
+                isDetails
+                    ? Text('')
+                    : TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  MovieDetails(movie: movie),
+                            ),
+                          );
+                        },
+                        child: Text('Read More'),
                       ),
-                    );
-                  },
-                  child: Text('Read More'),
-                ),
               ],
             ),
           ),
